@@ -7,6 +7,7 @@ import { system } from "./system.ts";
 
 import { routeTree } from "./routeTree.gen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ColorModeProvider } from "./components/ui/color-mode";
 
 const router = createRouter({ routeTree });
 
@@ -23,7 +24,9 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ChakraProvider value={system}>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <ColorModeProvider>
+          <RouterProvider router={router} />
+        </ColorModeProvider>
       </QueryClientProvider>
     </ChakraProvider>
   </StrictMode>

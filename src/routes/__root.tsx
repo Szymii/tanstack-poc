@@ -1,6 +1,7 @@
 import { Link as ChakraLink, Flex } from "@chakra-ui/react";
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import { ColorModeButton } from "../components/ui/color-mode";
 
 export const Route = createRootRoute({
   component: () => (
@@ -9,9 +10,10 @@ export const Route = createRootRoute({
         <ChakraLink asChild>
           <Link to="/">Home</Link>
         </ChakraLink>
-        <ChakraLink>
+        <ChakraLink asChild>
           <Link to="/about">About</Link>
         </ChakraLink>
+        <ColorModeButton />
       </Flex>
       <Outlet />
       <TanStackRouterDevtools />
