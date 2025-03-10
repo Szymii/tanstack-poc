@@ -21,7 +21,7 @@ function RouteComponent() {
 
   const handleInputChange = (value: string) => {
     setInputValue(value);
-    navigate({ search: (prev) => ({ ...prev, color: value }) });
+    navigate({ search: (prev) => ({ ...prev, color: value }), replace: true });
   };
 
   return (

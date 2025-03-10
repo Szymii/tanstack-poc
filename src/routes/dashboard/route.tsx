@@ -28,7 +28,6 @@ export const Route = createFileRoute("/dashboard")({
 });
 
 function Dashboard() {
-  console.log("rerere");
   return (
     <Container py={6}>
       <Heading>Dashboard Layout (authenticated)</Heading>
