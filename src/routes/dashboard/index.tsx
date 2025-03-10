@@ -3,9 +3,13 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Input } from "@chakra-ui/react";
 import { useState } from "react";
 
+interface DashboardSearchParams {
+  color?: string; // Optional property
+}
+
 export const Route = createFileRoute("/dashboard/")({
   component: RouteComponent,
-  validateSearch: (search: Record<string, unknown>) => ({
+  validateSearch: (search: Record<string, unknown>): DashboardSearchParams => ({
     color: (search?.color as string) || "",
   }),
 });
