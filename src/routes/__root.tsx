@@ -1,4 +1,10 @@
-import { Link as ChakraLink, Flex } from "@chakra-ui/react";
+import {
+  Button,
+  Link as ChakraLink,
+  Flex,
+  Heading,
+  Stack,
+} from "@chakra-ui/react";
 import {
   createRootRouteWithContext,
   Link,
@@ -17,6 +23,7 @@ interface RouteContext {
 
 export const Route = createRootRouteWithContext<RouteContext>()({
   component: Layout,
+  notFoundComponent: NotFound,
 });
 
 function Layout() {
@@ -51,5 +58,16 @@ function Layout() {
       <Outlet />
       <TanStackRouterDevtools />
     </>
+  );
+}
+
+function NotFound() {
+  return (
+    <Stack align="center" gap={4} pt={10}>
+      <Heading>404</Heading>
+      <Button asChild>
+        <Link to="/">Go to home</Link>
+      </Button>
+    </Stack>
   );
 }
