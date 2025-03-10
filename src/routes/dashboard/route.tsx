@@ -28,6 +28,7 @@ export const Route = createFileRoute("/dashboard")({
 });
 
 function Dashboard() {
+  console.log("rerere");
   return (
     <Container py={6}>
       <Heading>Dashboard Layout (authenticated)</Heading>
@@ -38,7 +39,14 @@ function Dashboard() {
         <GridItem>
           <Flex flexDir="column" gap={4}>
             <ChakraLink asChild>
-              <Link to="/dashboard">Colors</Link>
+              <Link
+                to="/dashboard"
+                search={{
+                  color: "",
+                }}
+              >
+                Colors
+              </Link>
             </ChakraLink>
             <ChakraLink asChild>
               <Link to="/dashboard/forms">Forms</Link>
