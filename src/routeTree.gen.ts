@@ -15,6 +15,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard/route'
 import { Route as IndexImport } from './routes/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as DashboardFormsImport } from './routes/dashboard/forms'
+import { Route as CatCatTypeImport } from './routes/cat/$catType'
 
 // Create/Update Routes
 
@@ -42,6 +43,12 @@ const DashboardFormsRoute = DashboardFormsImport.update({
   getParentRoute: () => DashboardRouteRoute,
 } as any)
 
+const CatCatTypeRoute = CatCatTypeImport.update({
+  id: '/cat/$catType',
+  path: '/cat/$catType',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -58,6 +65,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/cat/$catType': {
+      id: '/cat/$catType'
+      path: '/cat/$catType'
+      fullPath: '/cat/$catType'
+      preLoaderRoute: typeof CatCatTypeImport
       parentRoute: typeof rootRoute
     }
     '/dashboard/forms': {
@@ -96,12 +110,14 @@ const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/cat/$catType': typeof CatCatTypeRoute
   '/dashboard/forms': typeof DashboardFormsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cat/$catType': typeof CatCatTypeRoute
   '/dashboard/forms': typeof DashboardFormsRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -110,27 +126,41 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/cat/$catType': typeof CatCatTypeRoute
   '/dashboard/forms': typeof DashboardFormsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/dashboard/forms' | '/dashboard/'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/cat/$catType'
+    | '/dashboard/forms'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard/forms' | '/dashboard'
-  id: '__root__' | '/' | '/dashboard' | '/dashboard/forms' | '/dashboard/'
+  to: '/' | '/cat/$catType' | '/dashboard/forms' | '/dashboard'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/cat/$catType'
+    | '/dashboard/forms'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
+  CatCatTypeRoute: typeof CatCatTypeRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRouteRoute: DashboardRouteRouteWithChildren,
+  CatCatTypeRoute: CatCatTypeRoute,
 }
 
 export const routeTree = rootRoute
@@ -144,7 +174,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/dashboard"
+        "/dashboard",
+        "/cat/$catType"
       ]
     },
     "/": {
@@ -156,6 +187,9 @@ export const routeTree = rootRoute
         "/dashboard/forms",
         "/dashboard/"
       ]
+    },
+    "/cat/$catType": {
+      "filePath": "cat/$catType.tsx"
     },
     "/dashboard/forms": {
       "filePath": "dashboard/forms.tsx",
