@@ -24,6 +24,12 @@ interface RouteContext {
 export const Route = createRootRouteWithContext<RouteContext>()({
   component: Layout,
   notFoundComponent: NotFound,
+  loader: () => {
+    // here queryClient.ensureQueryData
+    fetch("https://cataas.com/api/cats?limit=10&skip=0").then((res) => {
+      return res.json();
+    });
+  },
 });
 
 function Layout() {
