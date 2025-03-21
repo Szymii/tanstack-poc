@@ -2,12 +2,23 @@ import { Button, Container, Heading, Stack, Text } from "@chakra-ui/react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useAuth } from "../components/AuthProvider";
 import { Route } from "../routes";
+import { $client } from "../client";
 
 export const Home = () => {
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate({
     from: Route.fullPath,
   });
+
+  const { data, error } = $client.useQuery("get", "/", {
+    params: {
+      query: {
+        message: "Hello",
+      },
+    },
+  });
+
+  console.log(data, error);
 
   const tag = ["orange", "cute", "box"].at(Math.floor(Math.random() * 3));
 

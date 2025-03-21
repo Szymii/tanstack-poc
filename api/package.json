@@ -1,0 +1,20 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "bun app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hono/valibot-validator": "^0.5.2",
+    "@scalar/hono-api-reference": "^0.7.2",
+    "@valibot/to-json-schema": "^1.0.0",
+    "hono": "^4.7.5",
+    "hono-openapi": "^0.4.6",
+    "valibot": "^1.0.0"
+  }
+}
